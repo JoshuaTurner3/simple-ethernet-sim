@@ -19,8 +19,7 @@ cd simple-ethernet-sim
 
 # To build
 cmake -B build .
-cd build
-make .
+cmake --build build -j
 
 # To run the tests
 ./build/tests
