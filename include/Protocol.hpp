@@ -33,9 +33,9 @@ static constexpr std::size_t MSG_LEN_MIN = sizeof(Msg::Header::type) +
                                            sizeof(Msg::Header::len);
 
 /* Helper functions */
-static std::vector<uint8_t> packMsg(const MsgType t, const uint8_t id,
+std::vector<uint8_t> packMsg(const MsgType t, const uint8_t id,
                                     const std::vector<uint8_t> &data);
-static Msg unpackMsg(const std::vector<uint8_t> &data);
+Msg unpackMsg(const std::vector<uint8_t> &data);
 
 } // namespace Protocol
 

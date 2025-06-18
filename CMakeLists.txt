@@ -10,7 +10,10 @@ find_package(Catch2 3 REQUIRED)
 
 add_library(eth STATIC
   src/EthernetFrame.cpp
-  src/EthernetDriver.cpp)
+  src/EthernetDriver.cpp
+  src/Protocol.cpp
+  src/ProtocolHost.cpp
+  src/ProtocolDevice.cpp)
 target_include_directories(eth PUBLIC include)
 
 # Tests
