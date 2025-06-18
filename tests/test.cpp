@@ -7,7 +7,7 @@
  */
 using Ethernet::Frame;
 using Ethernet::MAC_LEN;
-using MacAddr = Ethernet::Frame::MacAddr;
+using Ethernet::MacAddr;
 
 static const MacAddr MAC_A{0x00,0x11,0x22,0x33,0x44,0x55};
 static const MacAddr MAC_B{0xAA,0xBB,0xCC,0xDD,0xEE,0xFF};

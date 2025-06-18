@@ -8,8 +8,9 @@
 
 namespace Ethernet {
 
-/* General Constants */
+/* General Constants/Types */
 constexpr std::size_t MAC_LEN = 6;
+using MacAddr = std::array<uint8_t, MAC_LEN>;
 
 class Frame {
 public:
@@ -29,7 +30,6 @@ public:
   static constexpr std::size_t PAYLOAD_LEN_MAX = 1500;
 
   /* Types */
-  using MacAddr = std::array<uint8_t, MAC_LEN>;
   enum class EtherType : uint16_t {
     IPV4 = 0x0800,
     IPV6 = 0x86DD,
@@ -113,7 +113,7 @@ public:
    * testing purposes a manual disable has been added fault injection.
    * @return none
    */
-  void setPayload(const std::vector<uint8_t> &new_payload, const bool recalc_crc);
+  void setPayload(const std::vector<uint8_t> &new_payload, const bool recalc_crc = true);
 
   /* Gets the frame's destination MAC address
    * @return The destination MAC address
@@ -152,7 +152,7 @@ private:
    */
   static uint32_t crc32(const Frame &frame);
 
-  // Frame Data
+  /* Data */
   MacAddr dst{};
   MacAddr src{};
   EtherType type{EtherType::IPV4};

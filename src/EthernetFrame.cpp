@@ -134,7 +134,7 @@ void Frame::setType(const EtherType &new_type) {
   this->updateCRC();
 }
 
-void Frame::setPayload(const std::vector<uint8_t> &new_payload, const bool recalc_crc = true) {
+void Frame::setPayload(const std::vector<uint8_t> &new_payload, const bool recalc_crc) {
   if(PAYLOAD_LEN_MAX < new_payload.size()){
     throw std::runtime_error("Payload too large");
   }
@@ -147,11 +147,11 @@ void Frame::setPayload(const std::vector<uint8_t> &new_payload, const bool recal
   }
 }
 
-Frame::MacAddr Frame::getDst() const {
+MacAddr Frame::getDst() const {
   return this->dst;
 }
 
-Frame::MacAddr Frame::getSrc() const {
+MacAddr Frame::getSrc() const {
   return this->src;
 }
 
