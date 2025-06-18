@@ -1,16 +1,11 @@
 #ifndef ETHERNET_FRAME_HPP
 #define ETHERNET_FRAME_HPP
 
-#include <array>
-#include <cstdint>
+#include "Ethernet.hpp"
 #include <span>
 #include <vector>
 
 namespace Ethernet {
-
-/* General Constants/Types */
-constexpr std::size_t MAC_LEN = 6;
-using MacAddr = std::array<uint8_t, MAC_LEN>;
 
 class Frame {
 public:

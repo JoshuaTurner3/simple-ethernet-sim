@@ -1,6 +1,5 @@
 #include "EthernetFrame.hpp"
 #include <algorithm>
-#include <cstdint>
 #include <cstring>
 #include <endian.h>
 #include <stdexcept>
