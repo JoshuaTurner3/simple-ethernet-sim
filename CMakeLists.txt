@@ -4,10 +4,11 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# Catch2 Setup
+# Packages
 find_package(Catch2 3 REQUIRED)
+find_package(Threads REQUIRED)
 
-
+# Create Ethernet library
 add_library(eth STATIC
   src/EthernetFrame.cpp
   src/EthernetDriver.cpp
@@ -22,10 +23,6 @@ add_executable(tests
   tests/TestDriver.cpp)
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain eth)
 
-# Demo 1: Ping/Pong
-# add_executable(ethernet_demo src/Demo1.cpp)
-# target_link_libraries(ethernet_demo PRIVATE eth)
-
-# Demo 2: Stream
-
-# Demo 3: Error Handling
+# Demo: Ping/Pong
+add_executable(ethernet_demo src/Demo.cpp)
+target_link_libraries(ethernet_demo PRIVATE eth Threads::Threads)

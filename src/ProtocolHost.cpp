@@ -1,5 +1,6 @@
 #include "ProtocolHost.hpp"
 #include "Protocol.hpp"
+#include <cstring>
 #include <stdexcept>
 
 namespace Protocol {
@@ -9,7 +10,7 @@ Host::Host(Driver &driver) : driver(driver) {}
 
 bool Host::poll() {
   // Get message
-  std::vector<uint8_t> bytes;
+  std::vector<uint8_t> bytes{};
   if (!this->driver.recv(bytes)) {
     return false;
   }
@@ -35,21 +36,37 @@ bool Host::poll() {
   return true;
 }
 
-void Host::sendCommand(const uint8_t cmd_id, const std::vector<uint8_t> &data) {
-  const std::vector<uint8_t> bytes = packMsg(MsgType::COMMAND, cmd_id, data);
+void Host::sendCommand(const CmdID cmd_id, const std::vector<uint8_t> &data) {
+  ID id;
+  id.cmd_id = cmd_id;
+  const std::vector<uint8_t> bytes = packMsg(MsgType::COMMAND, id, data);
   this->driver.send(bytes);
 }
 
 void Host::handleResponse(const Msg &msg) {
-  // TODO
+  std::printf("[HOST] Response id=%u len=%u: ",
+              static_cast<uint8_t>(msg.header.id.cmd_id), msg.header.len);
+  for (const uint8_t byte : msg.data) {
+    std::printf("%c", std::isprint(byte) ? byte : '.');
+  }
+  std::puts("");
 }
 
 void Host::handleStream(const Msg &msg) {
-  // TODO
+  const StreamID id = msg.header.id.stream_id;
+  switch (id) {
+  case StreamID::TELEMETRY:
+    uint32_t count;
+    std::memcpy(&count, msg.data.data(), sizeof(count));
+    std::printf("[HOST] Stream count: %u\n", count);
+    break;
+  default:
+    throw std::runtime_error("Unknown StreamID code");
+  }
 }
 
 void Host::handleError(const Msg &msg) {
-  // TODO
+  std::printf("[HOST] ERROR code=%u\n", static_cast<uint8_t>(msg.header.id.error_id));
 }
 
 } // namespace Protocol

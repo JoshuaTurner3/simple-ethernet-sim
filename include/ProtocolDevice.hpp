@@ -16,9 +16,9 @@ public:
 
   bool poll();
 
-  void sendResponse(const uint8_t cmd_id, const std::vector<uint8_t> &data);
-  void sendStream(const uint8_t stream_id, const std::vector<uint8_t> &data);
-  void sendError(const uint8_t code);
+  void sendResponse(const CmdID cmd_id, const std::vector<uint8_t> &data);
+  void sendStream(const StreamID stream_id, const std::vector<uint8_t> &data);
+  void sendError(const ErrorID code);
 
 private:
   /* Handlers */
@@ -26,6 +26,7 @@ private:
 
   /* Data */
   Driver &driver;
+  bool send_stream{false};
 };
 
 } // namespace Protocol

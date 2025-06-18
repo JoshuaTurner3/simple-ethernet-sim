@@ -3,6 +3,7 @@
 
 #include "EthernetFrame.hpp"
 #include <deque>
+#include <mutex>
 
 namespace Ethernet {
 
@@ -76,7 +77,7 @@ public:
    * received or not.
    * @return True if data was received, False otherwise
    */
-  bool recv(std::vector<uint8_t> &output, const bool block = true);
+  bool recv(std::vector<uint8_t> &output);
 
   /* Checks whether the Driver's peer has sent data
    * @return True if data has been received, False othewise
@@ -110,6 +111,8 @@ private:
   MacAddr mac_peer{};
   ByteQueue rxQueue{};
   ByteQueue* txQueue{nullptr};
+  std::mutex rxMutex{};
+  std::mutex* txMutex{nullptr};
   bool error_injection{false};
 };
 

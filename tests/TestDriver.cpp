@@ -19,7 +19,7 @@ TEST_CASE("Driver round‑trip min payload") {
   host.send(tx);
 
   std::vector<uint8_t> rx;
-  REQUIRE(dev.recv(rx, false));
+  REQUIRE(dev.recv(rx));
   REQUIRE(rx == tx);
 }
 
@@ -27,7 +27,7 @@ TEST_CASE("Driver round‑trip min payload") {
 TEST_CASE("Non‑blocking recv returns false when empty") {
   Driver node(MAC_A);
   std::vector<uint8_t> buf;
-  REQUIRE_FALSE(node.recv(buf, false));
+  REQUIRE_FALSE(node.recv(buf));
 }
 
 /* ------------------------------------------------------------ */

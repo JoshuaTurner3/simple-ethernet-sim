@@ -15,7 +15,7 @@ public:
   explicit Host(Driver &driver);
 
   bool poll();
-  void sendCommand(const uint8_t cmd_id, const std::vector<uint8_t>& data);
+  void sendCommand(const CmdID cmd_id, const std::vector<uint8_t>& data);
 
 private:
   /* Handlers */

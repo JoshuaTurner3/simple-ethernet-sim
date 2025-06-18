@@ -31,19 +31,18 @@ void Driver::send(const std::vector<uint8_t> &data,
   if(this->error_injection){
     this->corrupt(frame);
   }
+  std::lock_guard<std::mutex> lock(*this->txMutex);
   this->txQueue->push_back(std::move(frame.serialize()));
 }
 
-bool Driver::recv(std::vector<uint8_t>& output, const bool block){
-  // Blocking call logic
-  // Ideally this wouldn't be a busy-wait, but for now it is fine
-  while(this->rxQueue.empty())
-    if(!block){
-      return false;
-    }
+bool Driver::recv(std::vector<uint8_t>& output){
+  std::lock_guard<std::mutex> lock(this->rxMutex);
+  if(this->rxQueue.empty()){
+    return false;
+  }
 
   // Receive frame
-  const Frame frame = Frame(std::move(this->rxQueue.front()));
+  Frame frame = Frame(this->rxQueue.front());
   this->rxQueue.pop_front();
 
   // Ensure the destination MAC is correct
@@ -65,8 +64,13 @@ void Driver::setErrorInjection(const bool enable){
 }
 
 void Driver::link(Driver &a, Driver &b){
+  // MAC exchange
   a.mac_peer = b.mac_self;
   b.mac_peer = a.mac_self;
+  // Mutex exchange
+  a.txMutex = &b.rxMutex;
+  b.txMutex = &a.rxMutex;
+  // Queue exchange
   a.txQueue = &b.rxQueue;
   b.txQueue = &a.rxQueue;
 }
