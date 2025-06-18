@@ -1,0 +1,26 @@
+[
+{
+  "directory": "/home/cannibal/projects/simple-ethernet-driver/build",
+  "command": "/usr/bin/c++  -I/home/cannibal/projects/simple-ethernet-driver/include -std=gnu++23 -o CMakeFiles/eth.dir/src/EthernetFrame.cpp.o -c /home/cannibal/projects/simple-ethernet-driver/src/EthernetFrame.cpp",
+  "file": "/home/cannibal/projects/simple-ethernet-driver/src/EthernetFrame.cpp",
+  "output": "CMakeFiles/eth.dir/src/EthernetFrame.cpp.o"
+},
+{
+  "directory": "/home/cannibal/projects/simple-ethernet-driver/build",
+  "command": "/usr/bin/c++  -I/home/cannibal/projects/simple-ethernet-driver/include -std=gnu++23 -o CMakeFiles/eth.dir/src/EthernetDriver.cpp.o -c /home/cannibal/projects/simple-ethernet-driver/src/EthernetDriver.cpp",
+  "file": "/home/cannibal/projects/simple-ethernet-driver/src/EthernetDriver.cpp",
+  "output": "CMakeFiles/eth.dir/src/EthernetDriver.cpp.o"
+},
+{
+  "directory": "/home/cannibal/projects/simple-ethernet-driver/build",
+  "command": "/usr/bin/c++  -I/home/cannibal/projects/simple-ethernet-driver/include -std=gnu++23 -o CMakeFiles/tests.dir/tests/test.cpp.o -c /home/cannibal/projects/simple-ethernet-driver/tests/test.cpp",
+  "file": "/home/cannibal/projects/simple-ethernet-driver/tests/test.cpp",
+  "output": "CMakeFiles/tests.dir/tests/test.cpp.o"
+},
+{
+  "directory": "/home/cannibal/projects/simple-ethernet-driver/build",
+  "command": "/usr/bin/c++  -I/home/cannibal/projects/simple-ethernet-driver/include -std=gnu++23 -o CMakeFiles/ethernet_demo.dir/src/Demo.cpp.o -c /home/cannibal/projects/simple-ethernet-driver/src/Demo.cpp",
+  "file": "/home/cannibal/projects/simple-ethernet-driver/src/Demo.cpp",
+  "output": "CMakeFiles/ethernet_demo.dir/src/Demo.cpp.o"
+}
+]
