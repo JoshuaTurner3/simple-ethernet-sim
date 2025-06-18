@@ -86,8 +86,8 @@ Msg unpackMsg(const std::vector<uint8_t> &bytes) {
   }
 
   // Copy message length
-  msg.header.len = (static_cast<uint16_t>(*iter) << 8) |
-                   (static_cast<uint16_t>(*(iter + 1)));
+  msg.header.len = (static_cast<uint16_t>(*iter)) |
+                   (static_cast<uint16_t>(*(iter + 1) << 8));
   iter += sizeof(msg.header.len);
 
   // Check message length

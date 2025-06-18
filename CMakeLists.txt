@@ -20,7 +20,8 @@ target_include_directories(eth PUBLIC include)
 # Tests
 add_executable(tests
   tests/TestFrame.cpp
-  tests/TestDriver.cpp)
+  tests/TestDriver.cpp
+  tests/TestProtocol.cpp)
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain eth)
 
 # Demo: Ping/Pong
