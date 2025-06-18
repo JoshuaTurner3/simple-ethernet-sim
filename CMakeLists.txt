@@ -14,7 +14,9 @@ add_library(eth STATIC
 target_include_directories(eth PUBLIC include)
 
 # Tests
-add_executable(tests tests/test.cpp)
+add_executable(tests
+  tests/test_frame.cpp
+  tests/test_driver.cpp)
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain eth)
 
 # Demo 1: Ping/Pong

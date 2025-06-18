@@ -65,6 +65,8 @@ void Driver::setErrorInjection(const bool enable){
 }
 
 void Driver::link(Driver &a, Driver &b){
+  a.mac_peer = b.mac_self;
+  b.mac_peer = a.mac_self;
   a.txQueue = &b.rxQueue;
   b.txQueue = &a.rxQueue;
 }

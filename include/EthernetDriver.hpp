@@ -76,8 +76,7 @@ public:
    * received or not.
    * @return True if data was received, False otherwise
    */
-  [[nodiscard]] bool recv(std::vector<uint8_t> &output,
-                          const bool block = true);
+  bool recv(std::vector<uint8_t> &output, const bool block = true);
 
   /* Checks whether the Driver's peer has sent data
    * @return True if data has been received, False othewise
